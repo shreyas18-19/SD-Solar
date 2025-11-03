@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reports - SD Solar Planet</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #000000, #0b0f1a, #001020);
+      color: #e6faff;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 2rem;
+      color: #00eaff;
+      text-shadow: 0 0 15px #00eaff, 0 0 30px #0077ff;
+    }
+
+    /* ---- Overall Performance Section ---- */
+    .summary-section {
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    .summary-section h2 {
+      color: #00eaff;
+      font-size: 1.8rem;
+      text-shadow: 0 0 15px #00eaff;
+      margin-bottom: 30px;
+    }
+
+    .summary-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .summary-cards .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 25px;
+      width: 200px;
+      color: #e0faff;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(6px);
+      transition: 0.3s ease;
+    }
+
+    .summary-cards .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+    }
+
+    .summary-cards .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #00eaff;
+    }
+
+    .summary-cards .card p {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* ---- Placeholder Report Cards (for later sections) ---- */
+    .container {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      cursor: pointer;
+    }
+
+    .report-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      transition: 0.3s ease;
+    }
+
+    .report-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+    }
+
+    .report-card h3 {
+      color: #00eaff;
+      margin-bottom: 15px;
+    }
+
+    .back-btn {
+      text-align: center;
+      margin: 40px;
+    }
+
+    .back-btn button {
+      background: linear-gradient(90deg, #00ff99, #00eaff);
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn button:hover {
+      background: linear-gradient(90deg, #00eaff, #00ff99);
+      box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <header>📊 SD Solar Planet — Reports</header>
+
+  <!-- 🌟 Overall Performance Summary -->
+  <section id="performance-summary" class="summary-section">
+    <h2>🌟 Overall Performance Summary</h2>
+
+    <div class="summary-cards">
+      <div class="card">
+        <h3>Total Projects</h3>
+        <p id="totalProjects">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Completed Projects</h3>
+        <p id="completedProjects">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Ongoing Projects</h3>
+        <p id="ongoingProjects">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Total Energy Generated</h3>
+        <p id="totalEnergy">0 MW</p>
+      </div>
+
+      <div class="card">
+        <h3>Total Revenue</h3>
+        <p id="totalRevenue">₹0 Cr</p>
+      </div>
+
+      <div class="card">
+        <h3>Carbon Offset</h3>
+        <p id="carbonOffset">0 Tons</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔹 Placeholder for Next Report Sections -->
+  <div class="container">
+    <div onclick="window.location.href='financial.html'" class="report-card">
+      <h3>1️⃣ Financial Analysis</h3>
+      <p>Income, expenditure, and profitability ratios.</p>
+    </div>
+
+    <div onclick="window.location.href='project_performance.html'" class="report-card">
+      <h3>2️⃣ Project-wise Performance</h3>
+      <p>Efficiency and completion data of each major project.</p>
+    </div>
+
+    <div onclick="window.location.href='Environment.html'" class="report-card">
+      <h3>3️⃣ Environmental Impact</h3>
+      <p>Carbon offset, CO₂ reduction, and sustainability index.</p>
+    </div>
+
+    <div class="report-card">
+      <h3>4️⃣ Download / Export Reports</h3>
+      <p>Download detailed reports in PDF or Excel format.</p>
+    </div>
+  </div>
+
+  <div class="back-btn">
+    <button onclick="window.location.href='dashboard.html'">← Back to Dashboard</button>
+  </div>
+
+  <!-- 🔹 Animated Counter Script -->
+  <script>
+    const data = {
+      totalProjects: 28,
+      completedProjects: 15,
+      ongoingProjects: 13,
+      totalEnergy: 540,
+      totalRevenue: 61,
+      carbonOffset: 3200
+    };
+
+    function animateValue(id, start, end, duration, suffix = '') {
+      const obj = document.getElementById(id);
+      let startTimestamp = null;
+
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerText = Math.floor(progress * (end - start) + start) + suffix;
+        if (progress < 1) window.requestAnimationFrame(step);
+      };
+
+      window.requestAnimationFrame(step);
+    }
+
+    window.onload = () => {
+      animateValue("totalProjects", 0, data.totalProjects, 1500);
+      animateValue("completedProjects", 0, data.completedProjects, 1500);
+      animateValue("ongoingProjects", 0, data.ongoingProjects, 1500);
+      animateValue("totalEnergy", 0, data.totalEnergy, 1500, " MW");
+      animateValue("totalRevenue", 0, data.totalRevenue, 1500, " Cr");
+      animateValue("carbonOffset", 0, data.carbonOffset, 1500, " Tons");
+    };
+  </script>
+</body>
+</html>

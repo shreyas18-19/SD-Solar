@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - SD Solar Planet</title>
+  <style>
+.back-button {
+  text-align: center;
+  margin: 60px 0 20px;
+}
+
+.back-button button {
+  background: linear-gradient(90deg, #00eaff, #0077ff);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.back-button button:hover {
+  background: linear-gradient(90deg, #0077ff, #00eaff);
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.8);
+  transform: translateY(-2px);
+}
+body {
+    background: radial-gradient(circle at top left, #00111a, #000000);
+    color: #e0f7ff;
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 40px;
+}
+
+.project-container {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 95%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.project-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(0, 234, 255, 0.1);
+    backdrop-filter: blur(12px);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px rgba(0, 234, 255, 0.4);
+}
+
+.project-info {
+    flex: 1.5;
+}
+
+.project-info h3 {
+    color: #00eaff;
+    margin-bottom: 10px;
+}
+
+.project-info p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+    color: #b7eaff;
+}
+
+.project-image {
+    flex: 1;
+    margin-left: 25px;
+}
+
+.project-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.project-image img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 234, 255, 0.5);
+}
+  </style>
+</head>
+
+<div class="back-button">
+  <button id="backBtn">← Back to Home</button>
+</div>
+
+<body>
+
+  <div class="project-container">
+
+    <!-- 🌞 SOLAR FARMS (10) -->
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Solar Farm - Pune</h3>
+        <p><strong>Place:</strong> Pune, Maharashtra</p>
+        <p><strong>Cost:</strong> ₹2.5 Cr</p>
+        <p><strong>Review:</strong> ★★★★☆</p>
+        <p><strong>Profit:</strong> ₹80 Lakh</p>
+        <p><strong>Manager:</strong> Mr. S. Patil</p>
+        <p><strong>Start:</strong> 10 Mar 2023</p>
+        <p><strong>End:</strong> 20 Aug 2024</p>
+      </div>
+      <div class="project-image">
+        <img src="solarpower.avif" alt="Solar Farm Pune">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Solar Power Plant - Nashik</h3>
+        <p><strong>Place:</strong> Nashik, Maharashtra</p>
+        <p><strong>Cost:</strong> ₹3.2 Cr</p>
+        <p><strong>Review:</strong> ★★★★★</p>
+        <p><strong>Profit:</strong> ₹1.1 Cr</p>
+        <p><strong>Manager:</strong> Mrs. K. More</p>
+        <p><strong>Start:</strong> 02 Jan 2024</p>
+        <p><strong>End:</strong> Ongoing</p>
+      </div>
+      <div class="project-image">
+        <img src="nashik-solar-panel.jpg" alt="Solar Nashik">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Solar Park - Ahilyanagar</h3>
+        <p><strong>Place:</strong> Ahilyanagar, Maharashtra</p>
+        <p><strong>Cost:</strong> ₹3.6 Cr</p>
+        <p><strong>Review:</strong> ★★★★☆</p>
+        <p><strong>Profit:</strong> ₹1.2 Cr</p>
+        <p><strong>Manager:</strong> Mr. R. Gite</p>
+        <p><strong>Start:</strong> 18 May 2023</p>
+        <p><strong>End:</strong> 15 Jul 2024</p>
+      </div>
+      <div class="project-image">
+        <img src="Ahilyanagar solar.jpg" alt="Solar Ahilyanagar">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Solar Farm - Kolhapur</h3>
+        <p><strong>Place:</strong> Kolhapur, Maharashtra</p>
+        <p><strong>Cost:</strong> ₹2.9 Cr</p>
+        <p><strong>Review:</strong> ★★★★☆</p>
+        <p><strong>Profit:</strong> ₹95 Lakh</p>
+        <p><strong>Manager:</strong> Mr. A. Pawar</p>
+        <p><strong>Start:</strong> 12 Mar 2023</p>
+        <p><strong>End:</strong> 10 Sep 2024</p>
+      </div>
+      <div class="project-image">
+        <img src="Kolhapur-solar-power-generation-cera-world.jpg" alt="Solar Kolhapur">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Solar Farm - Nagpur</h3>
+        <p><strong>Place:</strong> Nagpur, Maharashtra</p>
+        <p><strong>Cost:</strong> ₹3.8 Cr</p>
+        <p><strong>Review:</strong> ★★★★★</p>
+        <p><strong>Profit:</strong> ₹1.3 Cr</p>
+        <p><strong>Manager:</strong> Ms. R. Joshi</p>
+        <p><strong>Start:</strong> 05 Feb 2024</p>
+        <p><strong>End:</strong> Ongoing</p>
+      </div>
+      <div class="project-image">
+        <img src="Nagpur.jpg" alt="Solar Nagpur">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Solar Park - Solapur</h3>
+        <p><strong>Place:</strong> Solapur, Maharashtra</p>
+        <p><strong>Cost:</strong> ₹2.3 Cr</p>
+        <p><strong>Review:</strong> ★★★★☆</p>
+        <p><strong>Profit:</strong> ₹70 Lakh</p>
+        <p><strong>Manager:</strong> Mr. T. Mane</p>
+        <p><strong>Start:</strong> 22 Jan 2023</p>
+        <p><strong>End:</strong> 14 Dec 2023</p>
+      </div>
+      <div class="project-image">
+        <img src="solapur-solar-park.jpg" alt="Solar Solapur">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Solar Farm - Latur</h3>
+        <p><strong>Place:</strong> Latur, Maharashtra</p>
+        <p><strong>Cost:</strong> ₹2.7 Cr</p>
+        <p><strong>Review:</strong> ★★★☆☆</p>
+        <p><strong>Profit:</strong> ₹55 Lakh</p>
+        <p><strong>Manager:</strong> Mr. D. Kadam</p>
+        <p><strong>Start:</strong> 01 Jul 2023</p>
+        <p><strong>End:</strong> 20 May 2024</p>
+      </div>
+      <div class="project-image">
+        <img src="latur pant.avif" alt="Solar Latur">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Solar Power Station - Sambhajinagar</h3>
+        <p><strong>Place:</strong> Sambhajinagar, Maharashtra</p>
+        <p><strong>Cost:</strong> ₹3.1 Cr</p>
+        <p><strong>Review:</strong> ★★★★☆</p>
+        <p><strong>Profit:</strong> ₹95 Lakh</p>
+        <p><strong>Manager:</strong> Mr. V. Bhosale</p>
+        <p><strong>Start:</strong> 25 Apr 2023</p>
+        <p><strong>End:</strong> 30 Jan 2024</p>
+      </div>
+      <div class="project-image">
+        <img src="sambhajinagar.jpeg" alt="Solar Sambhajinagar">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Solar Energy Park - Beed</h3>
+        <p><strong>Place:</strong> Beed, Maharashtra</p>
+        <p><strong>Cost:</strong> ₹2.1 Cr</p>
+        <p><strong>Review:</strong> ★★★☆☆</p>
+        <p><strong>Profit:</strong> ₹40 Lakh</p>
+        <p><strong>Manager:</strong> Mr. A. Gaikwad</p>
+        <p><strong>Start:</strong> 15 Mar 2022</p>
+        <p><strong>End:</strong> 20 Nov 2023</p>
+      </div>
+      <div class="project-image">
+        <img src="beed plant.jpeg" alt="Solar Beed">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Solar Farm - Jalgaon</h3>
+        <p><strong>Place:</strong> Jalgaon, Maharashtra</p>
+        <p><strong>Cost:</strong> ₹2.9 Cr</p>
+        <p><strong>Review:</strong> ★★★★☆</p>
+        <p><strong>Profit:</strong> ₹85 Lakh</p>
+        <p><strong>Manager:</strong> Ms. N. Khot</p>
+        <p><strong>Start:</strong> 11 Feb 2024</p>
+        <p><strong>End:</strong> Ongoing</p>
+      </div>
+      <div class="project-image">
+        <img src="solarpower.avif" alt="Solar Jalgaon">
+      </div>
+    </div>
+
+    <!-- 🌬️ WIND PROJECTS -->
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Wind Energy Farm - Satara</h3>
+        <p><strong>Place:</strong> Satara, Maharashtra</p>
+        <p><strong>Cost:</strong> ₹4.5 Cr</p>
+        <p><strong>Review:</strong> ★★★★☆</p>
+        <p><strong>Profit:</strong> ₹1.5 Cr</p>
+        <p><strong>Manager:</strong> Mr. R. Deshmukh</p>
+        <p><strong>Start:</strong> 15 Feb 2023</p>
+        <p><strong>End:</strong> 10 Oct 2024</p>
+      </div>
+      <div class="project-image">
+        <img src="satara plant.webp" alt="Wind Satara">
+      </div>
+    </div>
+
+    <!-- ... (Continue adding wind, rooftop & hybrid projects until total 28) -->
+    
+  </div>
+  <script>
+  document.getElementById("backBtn").addEventListener("click", function() {
+    window.location.href = "dashboard.html";
+  });
+</script>
+</body>
+</html>

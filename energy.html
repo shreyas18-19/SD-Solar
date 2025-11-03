@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Total Energy Generated - SD Solar Planet</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top left, #000814, #00111a, #000);
+      color: #e0f7ff;
+    }
+
+    header {
+      text-align: center;
+      padding: 25px;
+      font-size: 1.8rem;
+      color: #00eaff;
+      text-shadow: 0 0 15px #00eaff;
+      letter-spacing: 1px;
+    }
+
+    section {
+      width: 90%;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    h2 {
+      color: #00eaff;
+      border-bottom: 1px solid rgba(0, 234, 255, 0.3);
+      padding-bottom: 10px;
+    }
+
+    .back-btn {
+      display: block;
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    .back-btn button {
+      background: linear-gradient(90deg, #00eaff, #0077ff);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      box-shadow: 0 0 15px rgba(0, 234, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .back-btn button:hover {
+      background: linear-gradient(90deg, #0077ff, #00eaff);
+      box-shadow: 0 0 25px rgba(0, 234, 255, 0.8);
+      transform: translateY(-2px);
+    }
+    .overview-section {
+  text-align: center;
+}
+
+.overview-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.overview-card {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.overview-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.4);
+}
+
+.overview-card h3 {
+  color: #00eaff;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.overview-card p {
+  font-size: 1.6rem;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 234, 255, 0.6);
+  margin: 0;
+}
+.charts-section {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.charts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 25px;
+}
+
+.chart-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 25px;
+  width: 500px;
+  height: 350px;
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.1);
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chart-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.3);
+}
+.plant-report {
+  margin-top: 60px;
+}
+
+.plant-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.plant-chart {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 20px;
+  width: 600px;
+  height: 400px;
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.plant-info {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 25px;
+  width: 300px;
+  color: #e0f7ff;
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.plant-info h3 {
+  color: #00eaff;
+  margin-bottom: 15px;
+}
+
+.plant-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.plant-info li {
+  margin: 10px 0;
+  font-size: 1.05rem;
+}
+.trend-analytics {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.trend-chart-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 25px;
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto;
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.1);
+  backdrop-filter: blur(8px);
+  height: 400px;
+}
+  </style>
+</head>
+<body>
+  <header>⚡ Total Energy Generated Overview ⚡</header>
+  <div class="back-btn">
+    <button id="backBtn">← Back to Dashboard</button>
+  </div>
+
+  <section class="overview-section">
+  <h2>Overview Summary</h2>
+  <div class="overview-cards">
+    <div class="overview-card">
+      <h3>Total Energy Generated</h3>
+      <p id="totalEnergy">145.68 MW</p>
+    </div>
+    <div class="overview-card">
+      <h3>Total Operational Plants</h3>
+      <p>54</p>
+    </div>
+    <div class="overview-card">
+      <h3>Average Daily Output</h3>
+      <p>2.8 MW / day</p>
+    </div>
+    <div class="overview-card">
+      <h3>Monthly Growth</h3>
+      <p>+15%</p>
+    </div>
+    <div class="overview-card">
+      <h3>CO₂ Saved</h3>
+      <p>1,200 Tons</p>
+    </div>
+  </div>
+</section>
+
+  <!-- Here we will add 6 sections one by one -->
+   <section class="charts-section">
+  <h2>Real-Time Energy Generation</h2>
+  <div class="charts-container">
+    <div class="chart-box">
+      <canvas id="energyLineChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <canvas id="energyPieChart"></canvas>
+    </div>
+  </div>
+</section>
+
+<section class="plant-report">
+  <h2>Plant-Wise Energy Report</h2>
+  <div class="plant-container">
+    <div class="plant-chart">
+      <canvas id="plantEnergyChart"></canvas>
+    </div>
+    <div class="plant-info">
+      <h3>Performance Summary</h3>
+      <ul>
+        <li><strong>Solar Park A:</strong> 62 MW</li>
+        <li><strong>Solar Park B:</strong> 48 MW</li>
+        <li><strong>Wind Station Alpha:</strong> 35 MW</li>
+        <li><strong>Hydro Plant Delta:</strong> 22 MW</li>
+        <li><strong>Battery Reserve Hub:</strong> 15 MW</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="trend-analytics">
+  <h2>Energy Trend Analytics (Live)</h2>
+  <div class="trend-chart-box">
+    <canvas id="liveTrendChart"></canvas>
+  </div>
+</section>
+  
+  
+  <script>
+    document.getElementById("backBtn").addEventListener("click", function() {
+      window.location.href = "dashboard.html";
+    });
+  </script>
+  <script>
+  // Energy Card click → open new energy page
+  document.getElementById("energyCard").addEventListener("click", function() {
+    window.location.href = "energy.html";
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  // Line chart (Energy over Time)
+  const ctxLine = document.getElementById('energyLineChart').getContext('2d');
+  const energyLineChart = new Chart(ctxLine, {
+    type: 'line',
+    data: {
+      labels: ['6 AM', '8 AM', '10 AM', '12 PM', '2 PM', '4 PM', '6 PM'],
+      datasets: [{
+        label: 'Energy Output (MW)',
+        data: [1.5, 3.2, 5.8, 7.1, 6.5, 4.3, 2.1],
+        borderColor: '#00eaff',
+        backgroundColor: 'rgba(0, 234, 255, 0.2)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 4,
+        pointBackgroundColor: '#00eaff',
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { color: '#e0f7ff' } } },
+      scales: {
+        x: { ticks: { color: '#e0f7ff' } },
+        y: { ticks: { color: '#e0f7ff' } }
+      }
+    }
+  });
+
+  // Pie chart (Energy Source Distribution)
+  const ctxPie = document.getElementById('energyPieChart').getContext('2d');
+  const energyPieChart = new Chart(ctxPie, {
+    type: 'doughnut',
+    data: {
+      labels: ['Solar', 'Wind', 'Hydro', 'Battery Reserve'],
+      datasets: [{
+        data: [60, 25, 10, 5],
+        backgroundColor: ['#00eaff', '#0077ff', '#00ffaa', '#ffcc00'],
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { position: 'bottom', labels: { color: '#e0f7ff' } }
+      }
+    }
+  });
+</script>
+<script>
+  const ctxPlant = document.getElementById('plantEnergyChart').getContext('2d');
+  const plantEnergyChart = new Chart(ctxPlant, {
+    type: 'bar',
+    data: {
+      labels: ['Solar Park A', 'Solar Park B', 'Wind Station Alpha', 'Hydro Plant Delta', 'Battery Reserve Hub'],
+      datasets: [{
+        label: 'Energy Generated (MW)',
+        data: [62, 48, 35, 22, 15],
+        backgroundColor: [
+          'rgba(0, 234, 255, 0.6)',
+          'rgba(0, 119, 255, 0.6)',
+          'rgba(0, 255, 170, 0.6)',
+          'rgba(255, 204, 0, 0.6)',
+          'rgba(255, 77, 77, 0.6)'
+        ],
+        borderColor: [
+          '#00eaff',
+          '#0077ff',
+          '#00ffaa',
+          '#ffcc00',
+          '#ff4d4d'
+        ],
+        borderWidth: 1.5
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { color: '#e0f7ff' } } },
+      scales: {
+        x: { ticks: { color: '#e0f7ff' } },
+        y: { ticks: { color: '#e0f7ff' } }
+      }
+    }
+  });
+</script>
+<script>
+  const ctxLive = document.getElementById('liveTrendChart').getContext('2d');
+
+  // Initial data for the live trend chart
+  const liveTrendChart = new Chart(ctxLive, {
+    type: 'line',
+    data: {
+      labels: Array.from({ length: 10 }, (_, i) => i + "s"),
+      datasets: [{
+        label: 'Live Energy Output (MW)',
+        data: Array.from({ length: 10 }, () => Math.random() * 10 + 5),
+        borderColor: '#00ffaa',
+        backgroundColor: 'rgba(0, 255, 170, 0.1)',
+        borderWidth: 2,
+        tension: 0.4,
+        pointRadius: 3,
+        pointBackgroundColor: '#00ffaa'
+      }]
+    },
+    options: {
+      responsive: true,
+      animation: false,
+      plugins: { legend: { labels: { color: '#e0f7ff' } } },
+      scales: {
+        x: { ticks: { color: '#e0f7ff' } },
+        y: { ticks: { color: '#e0f7ff' } }
+      }
+    }
+  });
+
+  // Live updating simulation
+  setInterval(() => {
+    const newValue = Math.random() * 10 + 5; // Random MW between 5-15
+    const newLabel = (liveTrendChart.data.labels.length + 1) + "s";
+
+    // Push new data and remove old one
+    liveTrendChart.data.labels.push(newLabel);
+    liveTrendChart.data.datasets[0].data.push(newValue);
+
+    if (liveTrendChart.data.labels.length > 15) {
+      liveTrendChart.data.labels.shift();
+      liveTrendChart.data.datasets[0].data.shift();
+    }
+
+    liveTrendChart.update();
+  }, 1500);
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hybrid Plant – Nashik</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #000, #0a0f1a, #00101a);
+      color: #e0f7ff;
+    }
+
+    header {
+      padding: 25px;
+      text-align: center;
+      font-size: 2rem;
+      color: #ffcc00;
+      text-shadow: 0 0 15px #ffcc00;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .info {
+      width: 45%;
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 25px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 15px rgba(255,204,0,0.2);
+    }
+
+    .info p {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+
+    .chart-container {
+      width: 300px;
+      height: 300px;
+    }
+
+    .back-btn {
+      text-align: center;
+      margin: 30px;
+    }
+
+    .back-btn button {
+      background: linear-gradient(90deg, #ffcc00, #ff8800);
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn button:hover {
+      background: linear-gradient(90deg, #ff8800, #ffcc00);
+      box-shadow: 0 0 20px rgba(255,204,0,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <header>🔋 Hybrid Plant – Nashik</header>
+
+  <div class="content">
+
+    <div class="info">
+      <h3>Project Overview</h3>
+      <p><b>Location:</b> Nashik, Maharashtra</p>
+      <p><b>Capacity:</b> 32 MW</p>
+      <p><b>Status:</b> On Progress (63% Completed)</p>
+      <p><b>Project Manager:</b> Aniket Gite</p>
+      <p><b>Start Date:</b> May 2024</p>
+      <p><b>Expected Completion:</b> July 2026</p>
+      <p><b>Total Cost:</b> ₹74 Crore</p>
+      <p><b>Powering:</b> 13,500+ Homes</p>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="nashikProgress"></canvas>
+    </div>
+
+  </div>
+
+  <div class="back-btn">
+    <button onclick="window.location.href='active-plans.html'">← Back to Active Plans</button>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('nashikProgress').getContext('2d');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [63, 37],
+          backgroundColor: ['#ffcc00', 'rgba(255,255,255,0.1)'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        cutout: '70%',
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false },
+          title: {
+            display: true,
+            text: '63% Completed',
+            color: '#ffcc00',
+            font: { size: 18 }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SD Solar Planet | Employees</title>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #0d1117, #1a1f25);
+      color: #e0e0e0;
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(20, 25, 30, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-size: 1.8em;
+      background: linear-gradient(90deg,#00ffe1,#00b3ff,#ffdf00,#00ffe1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation:glowmove 6s linear infinite;
+      letter-spacing: 1px;
+    }
+
+    #searchInput {
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      background: #222;
+      color: white;
+      width: 250px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 10px;
+      padding: 30px;
+      cursor: pointer;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      text-align: center;
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00bfff;
+    }
+
+    .card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 2px solid #00bfff;
+    }
+
+    .leader {
+      border: 2px solid gold !important;
+      box-shadow: 0 0 10px gold !important;
+    }
+
+    .card h3 {
+      color: #fff;
+      font-size: 1.1em;
+      margin: 5px 0;
+    }
+
+    .info {
+      font-size: 0.9em;
+      color: #aaa;
+      line-height: 1.4em;
+    }
+
+    .back-btn {
+      margin: 30px auto;
+      display: block;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 10px;
+      background: #00bfff;
+      color: black;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #0099cc;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1> SD S☀️lar Planet - Employees</h1>
+    <input type="text" id="searchInput" placeholder="🔍 Search employee by name..." />
+    
+  </header>
+
+  <div class="container" id="employeeContainer"></div>
+
+  <button class="back-btn" onclick="window.location.href='dashboard.html'">⬅ Back to Dashboard</button>
+
+  <script>
+const employees = [];
+const positions = ["Engineer", "Technician", "Supervisor", "Manager", "Solar Analyst", "Operator"];
+const cities = ["Pune", "Mumbai", "Nagpur", "Nashik", "Aurangabad", "Kolhapur", "Hyderabad"];
+const firstNames = ["Aarav", "Vivaan", "Aditya", "Sai", "Krishna", "Ishaan", "Arjun", "Shreyas", "Rahul", "Rohan", "Sneha", "Priya", "Ananya", "Kavya", "Rutuja", "Neha", "Aditi", "Gauri", "Tejas", "Omkar"];
+const lastNames = ["Patil", "Deshmukh", "Joshi", "Kulkarni", "Shinde", "Pawar", "More", "Kadam", "Gite", "Bhosale"];
+const statusOptions = ["Present", "Absent"];
+
+// 5 project leaders
+for (let i = 1; i <= 5; i++) {
+  employees.push({
+    name: `${firstNames[Math.floor(Math.random() * firstNames.length)]} ${lastNames[Math.floor(Math.random() * lastNames.length)]}`,
+    position: "Project Leader",
+    salary: `₹${(120000 + Math.random() * 30000).toFixed(0)}`,
+    exp: `${(8 + Math.random() * 7).toFixed(1)} yrs`,
+    location: cities[Math.floor(Math.random() * cities.length)],
+    img: `https://randomuser.me/api/portraits/men/${i}.jpg`,
+    leader: true,
+    status: statusOptions[Math.floor(Math.random() * 2)]
+  });
+}
+
+// Remaining 255 employees
+for (let i = 6; i <= 260; i++) {
+  employees.push({
+    name: `${firstNames[Math.floor(Math.random() * firstNames.length)]} ${lastNames[Math.floor(Math.random() * lastNames.length)]}`,
+    position: positions[Math.floor(Math.random() * positions.length)],
+    salary: `₹${(25000 + Math.random() * 50000).toFixed(0)}`,
+    exp: `${(1 + Math.random() * 9).toFixed(1)} yrs`,
+    location: cities[Math.floor(Math.random() * cities.length)],
+    img: `https://randomuser.me/api/portraits/${i % 2 === 0 ? "men" : "women"}/${i % 100}.jpg`,
+    leader: false,
+    status: statusOptions[Math.floor(Math.random() * 2)]
+  });
+}
+
+const container = document.getElementById("employeeContainer");
+
+function renderEmployees(filter = "All") {
+  container.innerHTML = "";
+  employees.forEach(emp => {
+    if (filter === "All" || emp.status === filter) {
+      const card = document.createElement("div");
+      card.className = emp.leader ? "card leader" : "card";
+      const color = emp.status === "Present" ? "lightgreen" : "red";
+      card.innerHTML = `
+        <img src="${emp.img}" alt="${emp.name}">
+        <h3>${emp.name}</h3>
+        <p class="info">
+          <strong>Position:</strong> ${emp.position}<br>
+          <strong>Salary:</strong> ${emp.salary}<br>
+          <strong>Experience:</strong> ${emp.exp}<br>
+          <strong>Location:</strong> ${emp.location}<br>
+          <strong>Status:</strong> <span style="color:${color}; font-weight:600;">${emp.status}</span>
+        </p>
+      `;
+      container.appendChild(card);
+    }
+  });
+}
+
+// Render all by default
+renderEmployees();
+
+// Search functionality
+document.getElementById("searchInput").addEventListener("keyup", () => {
+  const filter = document.getElementById("searchInput").value.toLowerCase().trim();
+  const cards = document.querySelectorAll(".card");
+  cards.forEach(card => {
+    const name = card.querySelector("h3").textContent.toLowerCase();
+    card.style.display = name.startsWith(filter) || filter === "" ? "block" : "none";
+  });
+});
+
+// Filter buttons
+function filterEmployees(type) {
+  renderEmployees(type);
+}
+</script>
+<script>
+// Open individual profile page on click
+document.querySelectorAll(".card").forEach((card, index) => {
+  card.addEventListener("click", () => {
+    localStorage.setItem("selectedEmployee", JSON.stringify(employees[index]));
+    window.location.href = "employee-profile.html";
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project-wise Performance - SD Solar Planet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #000000, #0b0f1a, #001020);
+      color: #e6faff;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 2rem;
+      color: #00eaff;
+      text-shadow: 0 0 15px #00eaff, 0 0 30px #0077ff;
+    }
+
+    .container {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      transition: 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+    }
+
+    .project-card h3 {
+      color: #00eaff;
+      margin-bottom: 10px;
+    }
+
+    .project-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .project-details p {
+      margin: 5px 0;
+      font-size: 0.95rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      height: 15px;
+      margin-top: 10px;
+    }
+
+    .progress {
+      height: 15px;
+      background: linear-gradient(90deg, #00eaff, #00ff99);
+      width: 0;
+      border-radius: 20px;
+      transition: width 1.5s ease-in-out;
+    }
+
+    .back-btn {
+      text-align: center;
+      margin: 40px;
+    }
+
+    .back-btn button {
+      background: linear-gradient(90deg, #f455bc, #eab225);
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn button:hover {
+      background: linear-gradient(90deg, #00eaff, #2f5e4b);
+      box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <header>📈 SD Solar Planet — Project-wise Performance</header>
+
+  <div class="container" id="projectContainer"></div>
+
+  <div class="back-btn">
+    <button onclick="window.location.href='reports.html'">← Back to Reports</button>
+  </div>
+
+  <script>
+    // Project Data
+    const projects = [
+      { name: "Solar Farm - Pune", location: "Pune, MH", cost: 2.4, efficiency: 89, manager: "Mr. Patil", completion: 100 },
+      { name: "Wind Turbine Park - Satara", location: "Satara, MH", cost: 1.8, efficiency: 84, manager: "Ms. Deshmukh", completion: 95 },
+      { name: "Solar Rooftop - Nagpur", location: "Nagpur, MH", cost: 1.2, efficiency: 90, manager: "Mr. Joshi", completion: 80 },
+      { name: "Hybrid Energy Site - Nashik", location: "Nashik, MH", cost: 3.1, efficiency: 87, manager: "Mr. Pawar", completion: 60 },
+      { name: "Wind Farm - Kolhapur", location: "Kolhapur, MH", cost: 2.8, efficiency: 92, manager: "Mr. Kale", completion: 70 },
+      { name: "Solar Park - Solapur", location: "Solapur, MH", cost: 3.6, efficiency: 86, manager: "Mr. Kulkarni", completion: 45 },
+    ];
+
+    const container = document.getElementById("projectContainer");
+
+    projects.forEach(p => {
+      const card = document.createElement("div");
+      card.classList.add("project-card");
+
+      card.innerHTML = `
+        <h3>${p.name}</h3>
+        <div class="project-details">
+          <p><strong>📍 Location:</strong> ${p.location}</p>
+          <p><strong>💸 Cost:</strong> ₹${p.cost} Cr</p>
+          <p><strong>⚙️ Efficiency:</strong> ${p.efficiency}%</p>
+          <p><strong>👷 Manager:</strong> ${p.manager}</p>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" style="width: ${p.completion}%;"></div>
+        </div>
+        <p style="text-align:right; margin-top:5px;">🔹 ${p.completion}% Completed</p>
+      `;
+
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>

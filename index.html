@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SD Solar Login</title>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="glow-bg"></div>
+
+  <div class="login-container">
+    <h1 class="title">☀️ SD SOLAR</h1>
+    <form class="login-form">
+      <div class="input-group">
+        <label>Username</label>
+        <input type="text" placeholder="Enter username" required>
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" placeholder="Enter password" required>
+      </div>
+
+      <div class="input-group captcha-group">
+        <label>Captcha</label>
+        <div class="captcha-box">
+          <span id="captchaText"></span>
+          <button type="button" id="refreshCaptcha">↻</button>
+        </div>
+        <input type="text" id="captchaInput" placeholder="Enter captcha" required>
+      </div>
+
+      <button type="submit" class="btn">Login</button>
+    <div id="loginMessage" style="margin-top: 10px; text-align: center; font-weight: 600;"></div>
+
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

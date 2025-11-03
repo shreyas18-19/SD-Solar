@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Profile</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0d1117, #1a1f25);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      width: 400px;
+      box-shadow: 0 0 20px #00bfff;
+    }
+
+    .profile-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #00bfff;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      color: #00bfff;
+      margin-bottom: 10px;
+    }
+
+    .info {
+      color: #ccc;
+      line-height: 1.6em;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #00bfff;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0099cc;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card" id="profileCard">
+    <p>Loading profile...</p>
+  </div>
+
+  <script>
+    const employee = JSON.parse(localStorage.getItem("selectedEmployee"));
+
+    if (employee) {
+      document.getElementById("profileCard").innerHTML = `
+        <img src="${employee.img}" alt="${employee.name}">
+        <h2>${employee.name}</h2>
+        <div class="info">
+          <p><strong>Position:</strong> ${employee.position}</p>
+          <p><strong>Salary:</strong> ${employee.salary}</p>
+          <p><strong>Experience:</strong> ${employee.exp}</p>
+          <p><strong>Location:</strong> ${employee.location}</p>
+          <p><strong>Projects Handled:</strong> ${employee.leader ? "12+" : Math.floor(Math.random() * 6) + 1}</p>
+          <p><strong>Contact:</strong> ${employee.name.split(" ")[0].toLowerCase()}@sdsolarplanet.com</p>
+        </div>
+        <button onclick="window.location.href='employees.html'">⬅ Back to Employees</button>
+      `;
+    } else {
+      document.getElementById("profileCard").innerHTML = "<p>No employee data found.</p>";
+    }
+  </script>
+</body>
+</html>

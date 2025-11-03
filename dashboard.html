@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SD Solar Planet Dashboard</title>
+  <style>
+    /* ===== GENERAL ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body {
+      height: 200vh;
+      background: linear-gradient(135deg, #0a0a0a, #151515, #191919);
+      background-size: 400% 400%;
+      animation: gradientMove 18s ease infinite;
+      color: #eaeaea;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== HEADING ===== */
+    /* ===== HEADING ===== */
+.main-heading {
+  font-family:'Times New Roman', Times, serif ;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 25px 0 10px;
+  background: linear-gradient(
+    90deg,
+    #f6b845,
+    #00ff87,
+    #aaff00,
+    #ffdd00,
+    #ff8800,
+    #ff0077,
+    #7a00ff,
+    #0941dc
+  );
+
+  
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(0, 234, 255, 0.25);
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+/* Hover effect for glowing gradient movement */
+.main-heading:hover {
+  animation: rainbowFlow 6s linear infinite;
+  text-shadow: 0 0 25px rgba(0, 255, 255, 0.7),
+               0 0 50px rgba(0, 255, 255, 0.3);
+}
+
+@keyframes rainbowFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* --- OWNER PROFILE SECTION --- */
+.owner-profile {
+  display: flex;
+  margin: 40px auto;
+  width: 80%;
+  margin-left: 125px;
+}
+
+.owner-card {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 25px 35px;
+  width: 80%;
+  max-width: 900px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.owner-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+}
+
+.owner-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 30px;
+  border: 3px solid cyan;
+  box-shadow: 0 0 20px rgb(158, 222, 240);
+  animation: glowPulse 3s infinite ease-in-out;
+  cursor: pointer;
+}
+
+.owner-info h2 {
+  font-size: 28px;
+  color: rgb(255, 255, 255);
+  margin-bottom: 10px;
+}
+
+.owner-info p {
+  color: #ccc;
+  font-size: 16px;
+  margin: 4px 0;
+  line-height: 1.5;
+}
+
+.edit-btn {
+  margin-top: 15px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  background: cyan;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.edit-btn:hover {
+  background: #00bcd4;
+  color: white;
+  box-shadow: 0 0 15px cyan;
+}
+
+/* Glowing animation for photo */
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 15px cyan; }
+  50% { box-shadow: 0 0 35px cyan; }
+  100% { box-shadow: 0 0 15px cyan; }
+}
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(28, 27, 27, 0.6);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 25px rgba(0, 255, 255, 0.05);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      list-style: none;
+      gap: 3rem;
+    }
+
+    .navbar ul li a {
+      color: #bfcfd1;
+      text-decoration: none;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      transition: 0.3s;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .navbar ul li a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 2px;
+      background: #00eaff;
+      transition: width 0.3s ease;
+      border-radius: 4px;
+    }
+   /* Background blur when modal open */
+.profile-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(20px) brightness(0.6);
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  animation: fadeInBg 0.6s ease-in-out;
+}
+
+/* Main glowing profile box */
+.profile-modal-content {
+  position: relative;
+  background: linear-gradient(145deg, rgba(12, 12, 12, 0.96), rgba(30, 30, 30, 0.95));
+  border-radius: 30px;
+  padding: 60px 60px;
+  width: 450px;
+  height: 350px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0,255,255,0.5), 0 0 60px rgba(255,0,255,0.3);
+  animation: popIn 0.4s ease-in-out, glowPulse 3s infinite alternate;
+  transition: all 0.4s ease;
+  border: 2px solid rgba(0,255,255,0.4);
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+/* Profile photo with multicolor glowing ring */
+.owner-popup-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 2px;
+  background: linear-gradient(135deg, cyan, magenta, lime, yellow);
+  padding: 4px;
+  box-shadow: 0 0 40px cyan, 0 0 60px magenta;
+  animation: imgGlow 3s infinite alternate;
+}
+
+/* Name - gradient text */
+.profile-modal-content h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00, #00ff80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+/* Profile info text */
+.profile-modal-content p {
+  font-size: 1.05rem;
+  color: #d6d6d6;
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+.profile-modal-content strong {
+  color: #00ffcc;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #ffffff;
+  text-shadow: 0 0 15px #ff00ff;
+}
+
+/* Animations */
+@keyframes fadeInBg {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 40px cyan, 0 0 60px magenta; }
+  100% { box-shadow: 0 0 50px yellow, 0 0 70px lime; }
+}
+
+@keyframes imgGlow {
+  0% { box-shadow: 0 0 25px cyan, 0 0 35px magenta; }
+  100% { box-shadow: 0 0 50px yellow, 0 0 60px lime; }
+}
+
+    .navbar ul li a:hover::after {
+      width: 100%;
+    }
+
+    .navbar ul li a:hover {
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff;
+    }
+
+    /* ===== DASHBOARD BODY ===== */
+    .dashboard {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: calc(100vh - 160px);
+    }
+    /* 🔹 Logout Button */
+#logoutBtn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 8px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 1000;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px rgba(6, 208, 227, 0.4);
+  transition: all 0.3s ease;
+  margin-left: 500px;
+}
+
+#logoutBtn:hover {
+  background: linear-gradient(90deg, #0d203d, #08191b);
+  box-shadow: 0 0 20px rgba(183, 196, 35, 0.8);
+  transform: scale(1.05);
+  color: yellow;
+}
+    .card-container {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      width: 220px;
+      height: 140px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: 0.4s;
+      backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+    }
+
+    .card h3 {
+      color: #00eaff;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #e0e0e0;
+    }
+  
+    .company-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+}
+
+.info-text {
+  flex: 1;
+  color: #e0f7ff;
+  font-family: 'Orbitron', sans-serif;
+  line-height: 1.6;
+}
+
+.info-text h2 {
+  color: #00eaff;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.info-text p {
+  font-size: 1rem;
+  color: #b7eaff;
+  margin-bottom: 10px;
+}
+
+.info-images {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.info-images img {
+  width: 48%;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.info-images img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.6);
+}
+.wind-video {
+  width: 100%;
+  height: 60%;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  object-fit: cover;
+
+}
+
+.wind-video:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.6);
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 60px auto;
+  cursor: pointer;
+}
+
+.summary-cards .card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  color: #e0f7ff;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: blur(15px);
+}
+
+.summary-cards .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.5);
+}
+
+.summary-cards .card h3 {
+  color: #00eaff;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.summary-cards .card p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+    /* ===== SUMMARY CARDS SECTION ===== */
+.summary-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 60px 0 30px;
+}
+
+.summary-card {
+  width: 240px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.summary-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+  border-color: rgba(0, 255, 255, 0.25);
+}
+
+.summary-card h3 {
+  color: #00eaff;
+  font-size: 1rem;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.summary-card p {
+  color: #eaeaea;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+/* ===== CHART SECTION ===== */
+.chart-section {
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto 60px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.08);
+  padding: 25px 30px;
+  backdrop-filter: blur(10px);
+}
+
+.chart-title {
+  color: #00eaff;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+}
+.chart-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 40px auto;
+  gap: 30px;
+}
+
+.chart-box1 {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.08);
+  padding: 20px;
+  backdrop-filter: blur(8px);
+  width:480px;
+  height: 370px;
+}
+.chart-box2 {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.08);
+  padding: 20px;
+  backdrop-filter: blur(8px);
+  width:400px;
+  height: 390px;
+}
+
+.chart-title {
+  color: #00eaff;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+.live-chart-section {
+  width: 90%;
+  max-width: 900px;
+  margin: 50px auto;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
+  padding: 25px;
+  backdrop-filter: blur(15px);
+  position: relative;
+  overflow: hidden;
+}
+
+.live-chart-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#livePowerChart {
+  width: 100% !important;
+  max-width: 800px;
+  height: 320px !important;
+  filter: drop-shadow(0 0 10px #00eaff);
+}
+
+.live-data {
+  margin-top: 20px;
+  color: #00eaff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+}
+
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00eaff; }
+  50% { text-shadow: 0 0 25px #00ffff, 0 0 45px #00eaff; }
+}
+.live-stats {
+  width: 100%;
+  max-width: 1000px;
+  margin: 40px auto;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  padding: 30px;
+  backdrop-filter: blur(10px);
+}
+
+.stats-heading {
+  color: #00eaff;
+  margin-bottom: 20px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.stat-card {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+  width: 260px;
+}
+
+.stat-card h3 {
+  color: #b0cfd1;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.stat-card p {
+  color: #00eaff;
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+  </style>
+</head>
+<body>
+  <!-- Heading -->
+  <h1 class="main-heading">⚡️ SD S☀️LAR PLANET DASHBOARD ⚡️</h1>
+
+  
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#totalprojects">Projects</a></li>
+       <li><a href="#energySection">Energy</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="#">Settings</a></li>
+    </ul>
+    <div class="nav-right">
+    </div>
+    <button id="logoutBtn">Logout</button>
+  </nav>
+  
+  <section class="owner-profile">
+  <div class="owner-card">
+    <img src="Shreyas.jpg" alt="Owner Photo" class="owner-photo">
+    <!-- Profile Popup Modal -->
+<div id="profileModal" class="profile-modal">
+  <div class="profile-modal-content">
+    <span class="close-btn">&times;</span>
+    <img src="Shreyas.jpg" alt="Owner" class="owner-popup-photo">
+    <h2>Mr. Shreyas Gite</h2>
+    <p><strong>Position:</strong> Founder & CEO</p>
+    
+  </div>
+</div>
+    <div class="owner-info">
+      <h2>Mr. Shreyas Gite</h2>
+      <p><strong>Position:</strong> Founder & CEO, SD Solar Planet</p>
+      <p><strong>Experience:</strong> 12+ Years in Solar & Renewable Energy</p>
+      <p><strong>Location:</strong> Pune, Maharashtra, India</p>
+      <p><strong>Email:</strong> shreyas@sdsolarplanet.com</p>
+      <button class="edit-btn">Edit Profile</button>
+    </div>
+  </div>
+</section>
+
+
+  <section class="company-info">
+  <div class="info-text">
+    <h2>About SD Solar Planet ☀️</h2>
+    <p>
+      SD Solar Planet is a leading renewable energy company committed to creating a sustainable future 
+      through innovative solar and wind energy solutions. With cutting-edge technology and eco-friendly 
+      infrastructure, we are powering industries, homes, and communities with clean and efficient energy.
+    </p>
+    <p>
+      Our mission is to make green energy accessible, affordable, and impactful — for a brighter tomorrow. 🌍
+    </p>
+  </div>
+
+  <div class="info-images">
+    <video autoplay muted loop playsinline class="wind-video">
+    <source src="wind turbine video.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+<section id="totalprojects" class="summary-cards">
+  <div onclick="window.location.href='employees.html'" class="card" id="employeeCard">
+    <h3>Employees</h3>
+    <p>260</p>
+  </div>
+  <div class="card" id="projectsCard">
+    <h3>Total Projects</h3>
+    <p>10</p>
+  </div>
+  <div id="energyCard" class="card">
+    <h3>Total Energy Generated</h3>
+    <p>145 MW</p>
+  </div>
+  <div class="card" id="activePlansCard" onclick="window.location.href='active-plans.html'">
+    <h3>Active Plants</h3>
+    <p>4</p>
+  </div>
+  <div class="card">
+    <h3>CO₂ Saved</h3>
+    <p>1,200 Tons</p>
+  </div>
+  
+</section>
+
+  <!-- Summary Cards Section -->
+  <section class="summary-section">
+    <div class="summary-card">
+      <h3>Total Installed Capacity</h3>
+      <p>8.6 MW</p>
+    </div>
+    <div class="summary-card">
+      <h3>Active Projects</h3>
+      <p>12</p>
+    </div>
+    <div class="summary-card">
+      <h3>Total Revenue</h3>
+      <p>₹ 3.2 Cr</p>
+    </div>
+    <div class="summary-card">
+      <h3>CO₂ Saved</h3>
+      <p>14 Tons</p>
+    </div>
+  </section>
+
+<!-- Chart Section (Two side-by-side charts) -->
+<section class="chart-container">
+  <div class="chart-box1">
+    <h2 class="chart-title">Solar Power Generation (Last 7 Days)</h2>
+    <canvas id="solarChart"></canvas>
+  </div>
+
+  <div class="chart-box2">
+    <h2 class="chart-title">Energy Distribution</h2>
+    <canvas id="energyChart"></canvas>
+  </div>
+</section>
+<!-- Live Power Monitoring Section -->
+<section id="energySection" class="live-chart-section">
+  <h2 class="chart-title">Real-Time Power Output ⚡</h2>
+  <div class="live-chart-container">
+    <canvas id="livePowerChart"></canvas>
+    <div class="live-data">
+      <h3>Current Output:</h3>
+      <p id="liveValue">0.0 kW</p>
+    </div>
+  </div>
+</section>
+
+<!-- Live Energy Status Section -->
+<section class="live-stats">
+  <h2 class="stats-heading">Live Energy Overview ⚡</h2>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h3>Current Power Output</h3>
+      <p id="powerOutput">0 kW</p>
+    </div>
+    <div class="stat-card">
+      <h3>Total Energy Generated</h3>
+      <p id="totalEnergy">0 kWh</p>
+    </div>
+    <div class="stat-card">
+      <h3>Efficiency</h3>
+      <p id="efficiency">0%</p>
+    </div>
+  </div>
+</section>
+
+  <!-- Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  // First Line Chart
+  const ctx1 = document.getElementById("solarChart").getContext("2d");
+  new Chart(ctx1, {
+    type: "line",
+    data: {
+      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      datasets: [{
+        label: "Power Generated (kWh)",
+        data: [120, 150, 180, 220, 210, 250, 300],
+        borderColor: "#00eaff",
+        backgroundColor: "rgba(0, 234, 255, 0.1)",
+        borderWidth: 2.5,
+        tension: 0.4,
+        fill: true,
+        pointRadius: 3,
+        pointBackgroundColor: "#00eaff",
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: {
+          ticks: { color: "#bfcfd1" },
+          grid: { color: "rgba(255,255,255,0.05)" }
+        },
+        y: {
+          ticks: { color: "#bfcfd1" },
+          grid: { color: "rgba(255,255,255,0.05)" }
+        }
+      }
+    }
+  });
+  
+
+  // Second Doughnut Chart
+  const ctx2 = document.getElementById("energyChart").getContext("2d");
+  new Chart(ctx2, {
+    type: "doughnut",
+    data: {
+      labels: ["Residential", "Commercial", "Industrial", "Utility"],
+      datasets: [{
+        label: "Energy Distribution",
+        data: [25, 35, 20, 20],
+        backgroundColor: [
+          "rgba(0, 234, 255, 0.7)",
+          "rgba(0, 255, 150, 0.7)",
+          "rgba(255, 200, 0, 0.7)",
+          "rgba(255, 0, 120, 0.7)"
+        ],
+        borderColor: "transparent",
+        borderWidth: 0,
+        hoverOffset: 10
+      }]
+    },
+    options: {
+      cutout: "70%",
+      plugins: {
+        legend: {
+          labels: { color: "#bfcfd1", font: { size: 12 } },
+          position: "bottom"
+        }
+      }
+    }
+  });
+</script>
+<script>
+  document.getElementById("projectsCard").addEventListener("click", function() {
+    window.location.href = "projects.html";
+  });
+</script>
+<script>
+  // Live counters
+  let power = 320;
+  let total = 12500;
+  let eff = 97.8;
+
+  setInterval(() => {
+    power = (power + Math.random() * 2 - 1).toFixed(1);
+    total = (total + Math.random() * 3).toFixed(1);
+    eff = (97 + Math.random() * 3).toFixed(1);
+
+    document.getElementById("powerOutput").innerText = `${power} kW`;
+    document.getElementById("totalEnergy").innerText = `${total} kWh`;
+    document.getElementById("efficiency").innerText = `${eff}%`;
+  }, 2000);
+</script>
+<script>
+  const ctxLive = document.getElementById('livePowerChart').getContext('2d');
+
+  // Create gradient line
+  const gradient = ctxLive.createLinearGradient(0, 0, 0, 300);
+  gradient.addColorStop(0, 'rgba(0, 255, 255, 0.8)');
+  gradient.addColorStop(1, 'rgba(0, 100, 255, 0.3)');
+
+  let liveData = [];
+  for (let i = 0; i < 30; i++) {
+    liveData.push(320 + Math.random() * 20 - 10);
+  }
+
+  const liveChart = new Chart(ctxLive, {
+    type: 'line',
+    data: {
+      labels: Array.from({ length: 30 }, (_, i) => i),
+      datasets: [{
+        label: 'Power Output (kW)',
+        data: liveData,
+        borderColor: gradient,
+        backgroundColor: 'rgba(0, 234, 255, 0.15)',
+        borderWidth: 3,
+        tension: 0.4,
+        pointRadius: 0,
+        fill: true,
+      }]
+    },
+    options: {
+      animation: false,
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { display: false },
+        y: {
+          ticks: { color: '#bfcfd1' },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        }
+      }
+    }
+  });
+
+  // Continuous update
+  function updateLiveChart() {
+    const newVal = liveData[liveData.length - 1] + (Math.random() * 6 - 3);
+    liveData.push(newVal);
+    liveData.shift();
+    liveChart.data.datasets[0].data = liveData;
+    liveChart.update();
+
+    document.getElementById('liveValue').innerText = `${newVal.toFixed(1)} kW`;
+  }
+
+  setInterval(updateLiveChart, 900);
+</script>
+<script>
+   Function to update chart and value continuously
+  function updateLiveChart() {
+    const newVal = liveData[liveData.length - 1] + (Math.random() * 4 - 2);
+    liveData.push(newVal);
+    liveData.shift();
+
+    liveChart.data.datasets[0].data = liveData;
+    liveChart.update();
+
+    document.getElementById('liveValue').innerText = `${newVal.toFixed(1)} kW`;
+  }
+
+  setInterval(updateLiveChart, 1000);
+</script>
+<script>
+  document.getElementById("logoutBtn").addEventListener("click", function() {
+    window.location.href = "index.html"; // Redirect to login page
+    document.getElementById("logoutBtn").addEventListener("click", function() {
+  sessionStorage.removeItem("loggedIn"); // login status delete
+  window.location.href = "index.html";   // login page वर पाठव
+});
+  });
+</script>
+
+<script>
+  if (!sessionStorage.getItem("loggedIn")) {
+    window.location.href = "index.html";
+  }
+
+  window.addEventListener("pageshow", function(event) {
+    if (event.persisted) {
+      window.location.href = "index.html";
+    }
+  });
+</script>
+<script>
+  // Energy Card click → open new energy page
+  document.getElementById("energyCard").addEventListener("click", function() {
+    window.location.href = "energy.html";
+  });
+</script>
+<script>
+const modal = document.getElementById('profileModal');
+const ownerPhoto = document.querySelector('.owner-photo');
+const closeBtn = document.querySelector('.close-btn');
+
+// photo वर क्लिक केल्यावर popup उघडा
+ownerPhoto.addEventListener('click', () => {
+  modal.style.display = 'flex';
+});
+
+// बाहेर क्लिक केल्यावर बंद करा
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+// "X" वर क्लिक केल्यावर बंद करा
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+</script>
+<script>// When opening profile
+document.body.style.filter = "blur(5px)";
+
+// When closing profile
+document.body.style.filter = "none";</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wind Station – Satara</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #000, #0a0f1a, #00101a);
+      color: #e0f7ff;
+    }
+
+    header {
+      padding: 25px;
+      text-align: center;
+      font-size: 2rem;
+      color: #00ff99;
+      text-shadow: 0 0 15px #00ff99;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .info {
+      width: 45%;
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 25px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 15px rgba(0,255,153,0.2);
+    }
+
+    .info p {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+
+    .chart-container {
+      width: 300px;
+      height: 300px;
+    }
+
+    .back-btn {
+      text-align: center;
+      margin: 30px;
+    }
+
+    .back-btn button {
+      background: linear-gradient(90deg, #00ff99, #00eaff);
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn button:hover {
+      background: linear-gradient(90deg, #00eaff, #00ff99);
+      box-shadow: 0 0 20px rgba(0,255,153,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <header>🌬 Wind Station – Satara</header>
+
+  <div class="content">
+
+    <div class="info">
+      <h3>Project Overview</h3>
+      <p><b>Location:</b> Satara, Maharashtra</p>
+      <p><b>Capacity:</b> 28 MW</p>
+      <p><b>Status:</b> Running (78% Completed)</p>
+      <p><b>Project Manager:</b> Sneha Patil</p>
+      <p><b>Start Date:</b> March 2024</p>
+      <p><b>Expected Completion:</b> December 2025</p>
+      <p><b>Total Cost:</b> ₹61 Crore</p>
+      <p><b>Powering:</b> 11,000+ Homes</p>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="sataraProgress"></canvas>
+    </div>
+
+  </div>
+
+  <div class="back-btn">
+    <button onclick="window.location.href='active-plans.html'">← Back to Active Plans</button>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('sataraProgress').getContext('2d');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [78, 22],
+          backgroundColor: ['#00ff99', 'rgba(255,255,255,0.1)'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        cutout: '70%',
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false },
+          title: {
+            display: true,
+            text: '78% Completed',
+            color: '#00ff99',
+            font: { size: 18 }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

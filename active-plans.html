@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Active Energy Plans | SD Solar Planet</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #000, #0a0f1a, #00101a);
+      color: #e0f7ff;
+      text-align: center;
+    }
+
+    header {
+      padding: 25px;
+      font-size: 2rem;
+      color: #00eaff;
+      text-shadow: 0 0 15px #00eaff;
+    }
+
+    .plans-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 20px;
+    }
+
+    .plan-card {
+      width: 320px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.15);
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+    }
+
+    .plan-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 234, 255, 0.4);
+    }
+
+    .plan-card img {
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    canvas {
+      width: 100px !important;
+      height: 100px !important;
+      margin-top: 10px;
+    }
+
+    .project-btn {
+      margin-top: 15px;
+      background: linear-gradient(90deg, #00eaff, #0077ff);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .project-btn:hover {
+      background: linear-gradient(90deg, #0077ff, #00eaff);
+      box-shadow: 0 0 15px rgba(0, 234, 255, 0.5);
+    }
+
+    .back-btn {
+      margin: 40px;
+    }
+
+    .back-btn button {
+      background: linear-gradient(90deg, #00eaff, #0077ff);
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn button:hover {
+      background: linear-gradient(90deg, #0077ff, #00eaff);
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <header>⚡ Active Energy Plans</header>
+
+  <div class="plans-container">
+
+    <div class="plan-card">
+      <img src="photos/latur pant.avif" alt="Solar Project">
+      <h3>Solar Project – Pune</h3>
+      <p><b>Capacity:</b> 40 MW</p>
+      <p><b>Status:</b> Operational</p>
+      <p><b>Manager:</b> Rajesh More</p>
+      <canvas id="puneChart"></canvas>
+      <button class="project-btn" onclick="openProject('pune')">View Project Details</button>
+    </div>
+
+    <div class="plan-card">
+      <img src="https://www.enelgreenpower.com/content/dam/enel-egp/immagini/learning-hub/energia-eolica/pagine-di-dettaglio/Article-Media-parco.eolico.jpg" alt="Wind Station">
+      <h3>Wind Station – Satara</h3>
+      <p><b>Capacity:</b> 28 MW</p>
+      <p><b>Status:</b> Active</p>
+      <p><b>Manager:</b> Sneha Patil</p>
+      <canvas id="sataraChart"></canvas>
+      <button class="project-btn" onclick="openProject('satara')">View Project Details</button>
+    </div>
+
+    <div class="plan-card">
+      <img src="https://blog.feniceenergy.com/wp-content/uploads/2024/04/hybrid-power-plant.jpg" alt="Hybrid Plant">
+      <h3>Hybrid Plant – Nashik</h3>
+      <p><b>Capacity:</b> 32 MW</p>
+      <p><b>Status:</b> In Progress</p>
+      <p><b>Manager:</b> Aniket Gite</p>
+      <canvas id="nashikChart"></canvas>
+      <button class="project-btn" onclick="openProject('nashik')">View Project Details</button>
+    </div>
+
+  </div>
+
+  <div class="back-btn">
+    <button onclick="window.location.href='dashboard.html'">← Back to Dashboard</button>
+  </div>
+
+  <script>
+    // Circular progress charts using Chart.js
+    const chartConfig = (percent, color) => ({
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [percent, 100 - percent],
+          backgroundColor: [color, 'rgba(255,255,255,0.1)'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        cutout: '70%',
+        plugins: {
+          tooltip: { enabled: false },
+          legend: { display: false },
+          title: {
+            display: true,
+            text: percent + '%',
+            color: '#00eaff',
+            position: 'center'
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('puneChart'), chartConfig(92, '#00eaff'));
+    new Chart(document.getElementById('sataraChart'), chartConfig(78, '#00ff99'));
+    new Chart(document.getElementById('nashikChart'), chartConfig(63, '#ffcc00'));
+
+    // Redirect to detailed project pages
+    function openProject(project) {
+      window.location.href = 'project-' + project + '.html';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Analysis - SD Solar Planet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #000000, #0b0f1a, #001020);
+      color: #e6faff;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 2rem;
+      color: #00eaff;
+      text-shadow: 0 0 15px #00eaff, 0 0 30px #0077ff;
+    }
+
+    .container {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .report-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+    }
+
+    .report-card h3 {
+      color: #00eaff;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .back-btn {
+      text-align: center;
+      margin: 40px;
+    }
+
+    .back-btn button {
+      background: linear-gradient(90deg, #dd53bf, #5f9499);
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn button:hover {
+      background: linear-gradient(90deg, #161919, #0d0f0e);
+      box-shadow: 0 0 20px rgba(20, 30, 26, 0.5);
+    }
+
+    canvas {
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    th {
+      color: #00ffcc;
+    }
+
+    td {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>💰 SD Solar Planet — Financial Analysis</header>
+
+  <div class="container">
+
+    <!-- Monthly Finance Chart -->
+    <div class="report-card">
+      <h3>📈 Monthly Income vs Expenses</h3>
+      <canvas id="financeChart" width="400" height="180"></canvas>
+    </div>
+
+    <!-- Monthly Data Table -->
+    <div class="report-card">
+      <h3>🧾 Detailed Monthly Report</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Total Income (₹)</th>
+            <th>Total Expenses (₹)</th>
+            <th>Net Profit (₹)</th>
+          </tr>
+        </thead>
+        <tbody id="financeTable">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="back-btn">
+    <button onclick="window.location.href='reports.html'">← Back to Reports</button>
+  </div>
+
+  <script>
+    // Monthly Financial Data
+    const financeData = [
+      { month: "Jan", income: 520000, expense: 310000 },
+      { month: "Feb", income: 480000, expense: 295000 },
+      { month: "Mar", income: 610000, expense: 330000 },
+      { month: "Apr", income: 660000, expense: 340000 },
+      { month: "May", income: 750000, expense: 360000 },
+      { month: "Jun", income: 820000, expense: 410000 },
+      { month: "Jul", income: 870000, expense: 450000 },
+      { month: "Aug", income: 910000, expense: 470000 },
+      { month: "Sep", income: 840000, expense: 420000 },
+      { month: "Oct", income: 780000, expense: 400000 },
+      { month: "Nov", income: 720000, expense: 390000 },
+      { month: "Dec", income: 890000, expense: 440000 },
+    ];
+
+    // Fill Table
+    const tableBody = document.getElementById("financeTable");
+    financeData.forEach(row => {
+      const profit = row.income - row.expense;
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${row.month}</td>
+        <td>₹${row.income.toLocaleString()}</td>
+        <td>₹${row.expense.toLocaleString()}</td>
+        <td style="color:${profit > 0 ? '#00ff99' : '#ff4d4d'}">₹${profit.toLocaleString()}</td>
+      `;
+      tableBody.appendChild(tr);
+    });
+
+    // Finance Chart
+    const ctx = document.getElementById("financeChart").getContext("2d");
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: financeData.map(d => d.month),
+        datasets: [
+          {
+            label: "Income",
+            data: financeData.map(d => d.income),
+            backgroundColor: "rgba(0, 255, 153, 0.6)",
+          },
+          {
+            label: "Expenses",
+            data: financeData.map(d => d.expense),
+            backgroundColor: "rgba(255, 99, 132, 0.6)",
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { labels: { color: "#00eaff" } }
+        },
+        scales: {
+          x: { ticks: { color: "#fff" }, grid: { color: "rgba(255,255,255,0.1)" } },
+          y: { ticks: { color: "#fff" }, grid: { color: "rgba(255,255,255,0.1)" } }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
