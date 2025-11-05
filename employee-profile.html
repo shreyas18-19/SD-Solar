@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Employee Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       background: linear-gradient(135deg, #0d1117, #1a1f25);
@@ -16,6 +17,17 @@
       align-items: center;
       height: 100vh;
     }
+    @media (max-width: 768px) {
+  .card {
+    width: 90%;
+    margin: 10px auto;
+    font-size: 0.9rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+}
 
     .profile-card {
       background: rgba(255, 255, 255, 0.05);

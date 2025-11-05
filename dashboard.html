@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SD Solar Planet Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     /* ===== GENERAL ===== */
     * {
@@ -13,6 +14,17 @@
       box-sizing: border-box;
       font-family: "Poppins", sans-serif;
     }
+    @media (max-width: 768px) {
+  .card {
+    width: 90%;
+    margin: 10px auto;
+    font-size: 0.9rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+}
     html{
       scroll-behavior: smooth;
     }
@@ -21,7 +33,7 @@
       height: 200vh;
       background: linear-gradient(135deg, #0a0a0a, #151515, #191919);
       background-size: 400% 400%;
-      animation: gradientMove 18s ease infinite;
+      animation: gradientMove 60s ease infinite;
       color: #eaeaea;
       overflow-x: hidden;
     }
